@@ -32,5 +32,10 @@ namespace Kasi.Tools.Harvester.Domain.Abstract.Repository
         /// <param name="stopOnFirstError">True if the validation should stop and return the first error encountered, false if it should continue until all validations are completed.</param>
         /// <returns>Null or string array with validation error.</returns>
         string[] ValidationErrors(bool stopOnFirstError);
+
+        /// <summary>
+        /// Unique resource identifier.  Used to uniquely identify the specific source of a record.
+        /// </summary>
+        string URI { get; }
     }
 }
