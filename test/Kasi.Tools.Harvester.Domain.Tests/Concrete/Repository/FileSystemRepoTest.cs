@@ -6,6 +6,7 @@ using System.IO;
 using log4net;
 using System.Reflection;
 using Kasi.Tools.Harvester.Domain.Tests.Utility.Extensions;
+using log4net.Config;
 
 namespace Kasi.Tools.Harvester.Domain.Tests.Concrete.Repository
 {
@@ -13,6 +14,12 @@ namespace Kasi.Tools.Harvester.Domain.Tests.Concrete.Repository
     public class FileSystemRepoTest
     {
         private static ILog log => LogManager.GetLogger(MethodBase.GetCurrentMethod().Name);
+
+        [TestInitialize]
+        public void LoggingTests()
+        {
+            XmlConfigurator.Configure();
+        }
 
         [TestMethod]
         public void Can_CreateNew_WithCompleteConstructor_Success()
