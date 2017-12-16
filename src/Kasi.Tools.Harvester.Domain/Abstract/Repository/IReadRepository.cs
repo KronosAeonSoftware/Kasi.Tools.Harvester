@@ -47,6 +47,6 @@ namespace Kasi.Tools.Harvester.Domain.Abstract.Repository
         /// Gets all records in the repository in an asynchronous mode.
         /// </summary>
         /// <returns>The subset of records found.</returns>
-        ICollection<TEntity> GetAllAsync();
+        IEnumerable<TEntity> GetAllAsync();
     }
 }

@@ -23,12 +23,15 @@ namespace Kasi.Tools.Harvester.Domain.Concrete.Repository
 
         public IEnumerable<FileSystemRecord> GetAll()
         {
-            throw new NotImplementedException();
+            return mRecords;
         }
 
-        public ICollection<FileSystemRecord> GetAllAsync()
+        public IEnumerable<FileSystemRecord> GetAllAsync()
         {
-            throw new NotImplementedException();
+            foreach(var record in mRecords)
+            {
+                yield return record;
+            }
         }
 
         public FileSystemRecord GetById(Guid id)
