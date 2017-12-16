@@ -1,12 +1,26 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Kasi.Tools.Harvester.Domain.Abstract.Repository;
 using Kasi.Tools.Harvester.Domain.Concrete.Entity;
+using System.IO;
 
 namespace Kasi.Tools.Harvester.Domain.Concrete.Repository
 {
     public class FileSystemRepo : IFileSystemRepo<FileSystemRecord>
     {
+        private IEnumerable<FileSystemRecord> mRecords;
+
+        public FileSystemRepo(string root, string searchPattern, SearchOption option)
+        {
+            mRecords = Directory.EnumerateFiles(root, searchPattern, option).Select(x => new FileSystemRecord {
+                Id = new Guid(),
+                Name = Path.GetFileNameWithoutExtension(x),
+                Path = Path.GetDirectoryName(x),
+                Extension = Path.GetFullPath(x)
+            });
+        }
+
         public IEnumerable<FileSystemRecord> GetAll()
         {
             throw new NotImplementedException();
