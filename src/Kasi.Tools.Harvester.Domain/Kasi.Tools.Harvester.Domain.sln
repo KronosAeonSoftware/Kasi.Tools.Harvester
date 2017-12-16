@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kasi.Tools.Harvester.Domain", "Kasi.Tools.Harvester.Domain.csproj", "{FE93B613-7CC6-4C0D-82A2-0154060F2D5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE93B613-7CC6-4C0D-82A2-0154060F2D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE93B613-7CC6-4C0D-82A2-0154060F2D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE93B613-7CC6-4C0D-82A2-0154060F2D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE93B613-7CC6-4C0D-82A2-0154060F2D5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A750D584-DD87-4674-B669-FC58E8E72A6C}
+	EndGlobalSection
+EndGlobal
