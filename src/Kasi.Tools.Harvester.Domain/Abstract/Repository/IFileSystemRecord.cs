@@ -39,6 +39,6 @@
         /// <summary>
         /// Full file path with directory, name, and extension of the file.
         /// </summary>
-        string FilePath { get; }
+        string FullFilePath { get; }
     }
 }

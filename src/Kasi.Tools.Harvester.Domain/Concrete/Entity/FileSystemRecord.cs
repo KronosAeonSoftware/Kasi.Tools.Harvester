@@ -11,7 +11,7 @@ namespace Kasi.Tools.Harvester.Domain.Concrete.Entity
     {
         #region " Properties "
 
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Guid Id { get; set; }
         public string URI => throw new NotImplementedException();
 
         public string Path { get; set; }
@@ -24,7 +24,7 @@ namespace Kasi.Tools.Harvester.Domain.Concrete.Entity
         public string Contents => throw new NotImplementedException();
 
         public string FileName { get { return String.Format("{0}.{1}", Name, Extension.TrimStart('.')); } }
-        public string FilePath { get { return System.IO.Path.Combine(Path, FileName); } }
+        public string FullFilePath { get { return System.IO.Path.Combine(Path, FileName); } }
 
         #endregion
 
