@@ -3,12 +3,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Kasi.Tools.Harvester.Domain.Concrete.Repository;
 using System.Linq;
 using System.IO;
+using log4net;
+using System.Reflection;
+using Kasi.Tools.Harvester.Domain.Tests.Utility.Extensions;
 
 namespace Kasi.Tools.Harvester.Domain.Tests.Concrete.Repository
 {
     [TestClass]
     public class FileSystemRepoTest
     {
+        private static ILog log => LogManager.GetLogger(MethodBase.GetCurrentMethod().Name);
+
         [TestMethod]
         public void Can_CreateNew_WithCompleteConstructor_Success()
         {
@@ -32,6 +37,18 @@ namespace Kasi.Tools.Harvester.Domain.Tests.Concrete.Repository
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count());
             Assert.AreEqual(Path.Combine(props.root, props.pattern), testfile.FullFilePath);
+        }
+        [TestMethod]
+        public void Can_GetAll_WithHugeNumbers_Success()
+        {
+            var props = new { root = @"C:\tmp", pattern = "*.*", options = System.IO.SearchOption.AllDirectories };
+            var repo = new FileSystemRepo(props.root, props.pattern, props.options);
+            var actual = repo.GetAll();
+
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Count() > 10000);
+
+            log.Variable("actual.Count()", actual.Count());
         }
     }
 }
