@@ -50,6 +50,7 @@
     <Compile Include="Concrete\Entity\FileSystemRecord.cs" />
     <Compile Include="Concrete\Repository\FileSystemRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Encryption.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\Entity\" />

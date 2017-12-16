@@ -7,6 +7,7 @@ using log4net;
 using System.Reflection;
 using Kasi.Tools.Harvester.Domain.Tests.Utility.Extensions;
 using log4net.Config;
+using Kasi.Tools.Harvester.Domain.Utility;
 
 namespace Kasi.Tools.Harvester.Domain.Tests.Concrete.Repository
 {
@@ -56,6 +57,20 @@ namespace Kasi.Tools.Harvester.Domain.Tests.Concrete.Repository
             Assert.IsTrue(actual.Count() > 10000);
 
             log.Variable("actual.Count()", actual.Count());
+        }
+        [TestMethod]
+        public void Can_LoadHashes_Success()
+        {
+            var props = new { root = @"C:\Repositories\Kasi.Tools.Harvester\test\Kasi.Tools.Harvester.Domain.Tests\Concrete\Repository", pattern = "FileSystemRepoTest.cs", options = System.IO.SearchOption.TopDirectoryOnly };
+            var repo = new FileSystemRepo(props.root, props.pattern, props.options);
+            var files = repo.GetAll();
+            var testfile = files.FirstOrDefault();
+
+            var actual = testfile.LoadHashes();
+
+            Assert.IsTrue(actual);
+
+            Assert.AreEqual(Encryption.GetHash(Path.Combine(props.root, props.pattern)), testfile.FilelPathHash);
         }
     }
 }
