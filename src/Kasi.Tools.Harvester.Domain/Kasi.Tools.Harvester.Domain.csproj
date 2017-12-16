@@ -40,18 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\Repository\IFileSystemRecord.cs" />
+    <Compile Include="Abstract\Repository\IFileSystemRepo.cs" />
     <Compile Include="Abstract\Repository\IRecord.cs" />
     <Compile Include="Abstract\Repository\IReadRepository.cs" />
     <Compile Include="Concrete\Entity\Exceptions\KasiDomainException.cs" />
     <Compile Include="Concrete\Entity\Exceptions\ValidationErrorMessage.cs" />
     <Compile Include="Concrete\Entity\Exceptions\ValidationException.cs" />
+    <Compile Include="Concrete\Entity\FileSystemRecord.cs" />
+    <Compile Include="Concrete\Repository\FileSystemRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\Entity\" />
     <Folder Include="Abstract\Service\" />
     <Folder Include="Concrete\Enum\" />
-    <Folder Include="Concrete\Repository\" />
     <Folder Include="Concrete\Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
