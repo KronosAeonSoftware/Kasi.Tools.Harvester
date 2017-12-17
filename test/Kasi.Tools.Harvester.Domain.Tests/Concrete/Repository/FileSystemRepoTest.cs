@@ -59,18 +59,51 @@ namespace Kasi.Tools.Harvester.Domain.Tests.Concrete.Repository
             log.Variable("actual.Count()", actual.Count());
         }
         [TestMethod]
-        public void Can_LoadHashes_Success()
+        public void Can_LoadHashes_FilePathHash_Success()
         {
             var props = new { root = @"C:\Repositories\Kasi.Tools.Harvester\test\Kasi.Tools.Harvester.Domain.Tests\Concrete\Repository", pattern = "FileSystemRepoTest.cs", options = System.IO.SearchOption.TopDirectoryOnly };
             var repo = new FileSystemRepo(props.root, props.pattern, props.options);
             var files = repo.GetAll();
             var testfile = files.FirstOrDefault();
 
-            var actual = testfile.LoadHashes();
+            var loadSuccess = testfile.LoadHashes();
+            var actual = testfile.FilelPathHash;
+            var expected = Encryption.GetHash(Path.Combine(props.root, props.pattern));
 
-            Assert.IsTrue(actual);
+            log.Variable("actual", actual);
+            log.Variable("expected", expected);
 
-            Assert.AreEqual(Encryption.GetHash(Path.Combine(props.root, props.pattern)), testfile.FilelPathHash);
+            Assert.IsTrue(loadSuccess);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Can_LoadHashes_ContentsHash_Success()
+        {
+            var props = new { root = @"C:\Repositories\Kasi.Tools.Harvester\test\Kasi.Tools.Harvester.Domain.Tests\Concrete\Repository", pattern = "FileSystemRepoTest.cs", options = System.IO.SearchOption.TopDirectoryOnly };
+            var repo = new FileSystemRepo(props.root, props.pattern, props.options);
+            var files = repo.GetAll();
+            var testfile = files.FirstOrDefault();
+
+            var loadSuccess = testfile.LoadHashes();
+
+            Assert.IsTrue(loadSuccess);
+
+            try
+            {
+                using (var fs = new StreamReader(Path.Combine(props.root, props.pattern)))
+                {
+                    var expected = Encryption.GetHash(fs.ReadToEnd());
+                    var actual = testfile.ContentsHash;
+
+                    log.Variable("expected", expected);
+                    log.Variable("actual", actual);
+
+                    Assert.AreEqual(expected, actual);
+                }
+            } catch (Exception ex)
+            {
+                Assert.Fail();
+            }
         }
     }
 }

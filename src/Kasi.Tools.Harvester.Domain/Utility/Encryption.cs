@@ -12,8 +12,11 @@ namespace Kasi.Tools.Harvester.Domain.Utility
         public static string GetHash(string data)
         {
             var sha1 = SHA1CryptoServiceProvider.Create();
+            var sb = new StringBuilder();
 
-            return Encoding.UTF32.GetString(sha1.ComputeHash(Encoding.UTF32.GetBytes(data.ToCharArray())));
+            sha1.ComputeHash(Encoding.UTF32.GetBytes(data.ToCharArray())).Select(x => x.ToString("X2")).ToList().ForEach(x => sb.Append(x));
+
+            return sb.ToString();
         }
     }
 }
