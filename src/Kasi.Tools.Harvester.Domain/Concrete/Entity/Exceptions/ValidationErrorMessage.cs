@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Kasi.Tools.Harvester.Domain.Concrete.Entity.Exceptions
+﻿namespace Kasi.Tools.Harvester.Domain.Concrete.Entity.Exceptions
 {
     /// <summary>
     /// Contains the information for each validation error encountered when validating an object.
